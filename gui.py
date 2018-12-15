@@ -1,4 +1,6 @@
 from tkinter import *
+from tkinter import messagebox
+import api
 
 
 def raise_frame(frame):
@@ -34,21 +36,27 @@ Label(f1, text="Hint\n"
 # Label(f2, text='FRAME 2').pack()
 # lbl = Label(f2, text="")
 # lbl.grid(column=0, row=0)
-Label(f2, image=photo).place(x=0, y=0, relwidth=1, relheight=1)
+photo_earth = PhotoImage(file="sss.png")
+Label(f2, image=photo_earth).place(x=0, y=0, relwidth=1, relheight=1)
 
-hintlbl = Label(f2, text="Hint: Paste code in the box", bg="black", fg="white")
-hintlbl.grid(column=3, row=0)
+hint_lbl = Label(f2, text="Hint: Paste code in the box", bg="black", fg="white")
+hint_lbl.grid(column=3, row=0)
 
 f2entry = Text(f2, bg="black", fg="white", height=40, width=100)
 # txt.insert(END, "paste your code here")
 f2entry.grid(column=1, row=1)
 
 
-def calchandle():
-    print(f2entry.get("1.0", "end-1c"))
+def calc_handle():
+    api1 = api.Api(f2entry.get("1.0", "end-1c"))
+    messagebox.showinfo("Operation Successful", "Estimated: {}".format(api1.finalstring["cpuTime"]))
+    print("Status code: {}\n".format(api1.response.status_code))
+    print(" memory used was: {}\n".format(api1.finalstring['memory']),
+          "cputime was {}\n".format(api1.finalstring["cpuTime"]))
+    print("\noutput: \n\n", api1.finalstring['output'])
 
 
-btn = Button(f2, text="Calculate", bg="black", fg="white", command=calchandle)
+btn = Button(f2, text="Calculate", bg="black", fg="white", command=calc_handle)
 btn.grid(column=1, row=3)
 Button(f2, text='Back', bg="black", fg="white", command=lambda: raise_frame(f1)).grid(row=3, column=4)
 Label(f2, text="", bg="black", fg="white").grid(row=10, column=10)
@@ -57,7 +65,7 @@ Label(f2, text="", bg="black", fg="white").grid(row=10, column=10)
 #
 #
 # Frame 3 #
-Label(f3, image=photo).place(x=0, y=0, relwidth=1, relheight=1)
+Label(f3, image=photo_earth).place(x=0, y=0, relwidth=1, relheight=1)
 f3entry = Text(f3, bg="black", fg="white", height=40, width=50)
 # entry.insert(END, "paste your code here")
 f3entry.grid(column=1, row=1)
@@ -69,15 +77,37 @@ f3entry2 = Text(f3, bg="black", fg="white", height=40, width=50)
 f3entry2.grid(column=3, row=1)
 
 
-def comparehandle():
-    print(f3entry.get("1.0", "end-1c"))
-    print("\n")
-    print(f3entry2.get("1.0", "end-1c"))
+def compare_handle():
+    api1 = api.Api(f3entry.get("1.0", "end-1c"))
+    api2 = api.Api(f3entry2.get("1.0", "end-1c"))
+    fcpu = float(api1.finalstring['cpuTime'])
+    scpu = float(api2.finalstring['cpuTime'])
+    print("first Status code: {} and second Status code: {}\n".format(api1.response.status_code,
+                                                                      api2.response.status_code))
+
+    print(" first memory: {} and second memory: {}\n".format(api1.finalstring['memory'],
+                                                             api2.finalstring['memory']),
+
+          "first cputime: {} and second cputime: {}\n".format(fcpu, scpu))
+    print("\nfirst output: \n\n", api1.finalstring['output'])
+    print("\nsecond output: \n\n", api2.finalstring['output'])
+
+    if fcpu > scpu:
+        better = "First"
+    else:
+        better = "Second"
+
+    messagebox.showinfo("Compare Successful", "{} algorithm is better.".format(better))
+
+    # print(f3entry.get("1.0", "end-1c"))
+    # print("\n")
+    # print(f3entry2.get("1.0", "end-1c"))
 
 
-btn = Button(f3, text="Compare", bg="black", fg="white", command=comparehandle)
-btn.grid(row=3, columnspan=4)
-Button(f3, text='back',bg="black", fg="white", command=lambda: raise_frame(f1)).place(x=970, y=690)
+compare_btn = Button(f3, text="Compare", bg="black", fg="white", command=compare_handle)
+compare_btn.grid(row=3, columnspan=4)
+
+Button(f3, text='back', bg="black", fg="white", command=lambda: raise_frame(f1)).place(x=970, y=690)
 
 raise_frame(f1)
 root.mainloop()
