@@ -21,7 +21,7 @@ for frame in (f1, f2, f3):
 #
 #
 # Frame 1
-photo = PhotoImage(file="espresso2.png")
+photo = PhotoImage(file="res/espresso2.png")
 Label(f1, image=photo).place(x=0, y=0, relwidth=1, relheight=1)
 Button(f1, text=' Single', bg="black", fg="white", command=lambda: raise_frame(f2)).place(x=20, y=40)
 Button(f1, text='Double', bg="black", fg="white", command=lambda: raise_frame(f3)).place(x=20, y=80)
@@ -36,7 +36,7 @@ Label(f1, text="Hint\n"
 # Label(f2, text='FRAME 2').pack()
 # lbl = Label(f2, text="")
 # lbl.grid(column=0, row=0)
-photo_earth = PhotoImage(file="sss.png")
+photo_earth = PhotoImage(file="res/sss.png")
 Label(f2, image=photo_earth).place(x=0, y=0, relwidth=1, relheight=1)
 
 hint_lbl = Label(f2, text="Hint: Paste code in the box", bg="black", fg="white")
