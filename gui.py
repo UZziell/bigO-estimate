@@ -93,10 +93,11 @@ def compare_handle():
     print("\nsecond output: \n\n", api2.finalstring['output'])
 
     if fcpu > scpu:
+        better = "Second"
+    elif fcpu < scpu:
         better = "First"
     else:
-        better = "Second"
-
+        better = "No idea which"
     messagebox.showinfo("Compare Successful", "{} algorithm is better.".format(better))
 
     # print(f3entry.get("1.0", "end-1c"))
