@@ -18,9 +18,10 @@ f3 = Frame(root)
 
 for frame in (f1, f2, f3):
     frame.grid(row=0, column=0, sticky='news')
-#
-#
-# Frame 1
+
+###########
+# FRAME 1 #
+###########
 photo = PhotoImage(file="res/espresso2.png")
 Label(f1, image=photo).place(x=0, y=0, relwidth=1, relheight=1)
 Button(f1, text=' Single', bg="black", fg="white", command=lambda: raise_frame(f2)).place(x=20, y=40)
@@ -28,11 +29,10 @@ Button(f1, text='Double', bg="black", fg="white", command=lambda: raise_frame(f3
 Label(f1, text="Hint\n"
                "Single: estimates an algorithm runtime\n"
                "Double: compares two algorithms runtimes", fg="white", bg="black").place(x=20, y=680)
-#
-#
-#
 
+###########
 # FRAME 2 #
+###########
 # Label(f2, text='FRAME 2').pack()
 # lbl = Label(f2, text="")
 # lbl.grid(column=0, row=0)
@@ -55,16 +55,21 @@ def calc_handle():
           "cputime was {}\n".format(api1.finalstring["cpuTime"]))
     print("\noutput: \n\n", api1.finalstring['output'])
 
+    usr_input = f2entry.get("1.0", "end-1c")
+    print("input was {}".format(usr_input))
+    print("output is: ")
+    print(type(eval(usr_input)))
+
 
 btn = Button(f2, text="Calculate", bg="black", fg="white", command=calc_handle)
 btn.grid(column=1, row=3)
 Button(f2, text='Back', bg="black", fg="white", command=lambda: raise_frame(f1)).grid(row=3, column=4)
 Label(f2, text="", bg="black", fg="white").grid(row=10, column=10)
-#
-#
-#
-#
-# Frame 3 #
+
+
+###########
+# FRAME 3 #
+###########
 Label(f3, image=photo_earth).place(x=0, y=0, relwidth=1, relheight=1)
 f3entry = Text(f3, bg="black", fg="white", height=40, width=50)
 # entry.insert(END, "paste your code here")
