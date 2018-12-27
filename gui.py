@@ -43,7 +43,11 @@ hint_lbl = Label(f2, text="Hint: Paste code in the box", bg="black", fg="white")
 hint_lbl.grid(column=3, row=0)
 
 f2entry = Text(f2, bg="black", fg="white", height=40, width=100)
+<<<<<<< HEAD
 f2entry.insert(END, "# USE Python programming lang, provide functions with variable named N as iterator")
+=======
+# txt.insert(END, "paste your code here")
+>>>>>>> 9922e809ea47ffcc09c7911bb5d368b1a844c494
 f2entry.grid(column=1, row=1)
 
 
