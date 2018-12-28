@@ -10,7 +10,7 @@ class Compiler:
                         "clientSecret": "48d28c9a27eb657d3682c73276d55352ae67edbde419547bede62bc0c8c99a35",
                         "script": """{}""".format(user_input),
                         "language": "python3",
-                        "versionIndex": "0",
+                        "versionIndex": "2",
                         }
         self.response = requests.post(url=self.url, data=json.dumps(self.payload), headers=self.headers)
         self.pyresponse = self.response.json()
@@ -34,6 +34,6 @@ class DcodeFR:
         self.response = requests.post(url=self.url, data=self.payload, headers=self.headers)
         self.output = self.response.json()
 
-        print(f"DCODEFR API STATUS CODE WAS: ", self.response.status_code)
+        print("DCODEFR API STATUS CODE WAS: ,end=' '", self.response.status_code)
         # print("\n")
         # print("test output: {}".format(self.output['results']))
