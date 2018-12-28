@@ -1,6 +1,22 @@
 from tkinter import *
 from tkinter import messagebox
-import api
+import apis
+
+
+def compiler_api(source):
+    api_req = apis.Compiler(source)
+    return api_req.pyresponse['output']
+
+
+def point_finder(source, N):
+    """uses api_caller to get the output of source and finds a point based on output and N"""
+    tst_string = f"N = {N}\n" + source
+    print(tst_string)
+    # output = compiler_api(tst_string)
+
+
+def point_generator():
+    point_finder()
 
 
 def raise_frame(frame):
@@ -50,19 +66,14 @@ f2entry.grid(column=1, row=1)
 
 
 def calc_handle():
-    single_input = f2entry.get("1.0", "end-1c")
-    api1 = api.Api(single_input)
-    print(api1.response.status_code, api1.finalstring)
-    messagebox.showinfo("Operation Successful", "Estimated: {}".format(api1.finalstring["cpuTime"]))
-    print("Status code: {}\n".format(api1.response.status_code))
-    print(" memory used was: {}\n".format(api1.finalstring['memory']),
-          "cputime was {}\n".format(api1.finalstring["cpuTime"]))
-    print("\noutput: \n\n", api1.finalstring['output'])
-
     usr_input = f2entry.get("1.0", "end-1c")
-    print("input was {}".format(usr_input))
-    print("output is: ")
-    print(type(eval(usr_input)))
+    # api1 = compiler_api.Api(single_input)
+    # print(api1.response.status_code, api1.finalstring)
+    # messagebox.showinfo("Operation Successful", "Estimated: {}".format(api1.finalstring["cpuTime"]))
+    # print("Status code: {}\n".format(api1.response.status_code))
+    # print(" memory used was: {}\n".format(api1.finalstring['memory']),
+    #       "cputime was {}\n".format(api1.finalstring["cpuTime"]))
+    # print("\noutput: \n\n", api1.finalstring['output'])
 
 
 calc_btn = Button(f2, text="Calculate", bg="black", fg="white", command=calc_handle)
@@ -86,8 +97,8 @@ f3entry2.grid(column=3, row=1)
 
 
 def compare_handle():
-    api1 = api.Api(f3entry.get("1.0", "end-1c"))
-    api2 = api.Api(f3entry2.get("1.0", "end-1c"))
+    api1 = apis.Compiler(f3entry.get("1.0", "end-1c"))
+    api2 = apis.Compiler(f3entry2.get("1.0", "end-1c"))
     fcpu = float(api1.finalstring['cpuTime'])
     scpu = float(api2.finalstring['cpuTime'])
     print("first Status code: {} and second Status code: {}\n".format(api1.response.status_code,
