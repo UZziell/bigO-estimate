@@ -50,7 +50,9 @@ f2entry.grid(column=1, row=1)
 
 
 def calc_handle():
-    api1 = api.Api(f2entry.get("1.0", "end-1c"))
+    single_input = f2entry.get("1.0", "end-1c")
+    api1 = api.Api(single_input)
+    print(api1.response.status_code, api1.finalstring)
     messagebox.showinfo("Operation Successful", "Estimated: {}".format(api1.finalstring["cpuTime"]))
     print("Status code: {}\n".format(api1.response.status_code))
     print(" memory used was: {}\n".format(api1.finalstring['memory']),
@@ -63,11 +65,10 @@ def calc_handle():
     print(type(eval(usr_input)))
 
 
-btn = Button(f2, text="Calculate", bg="black", fg="white", command=calc_handle)
-btn.grid(column=1, row=3)
+calc_btn = Button(f2, text="Calculate", bg="black", fg="white", command=calc_handle)
+calc_btn.grid(column=1, row=3)
 Button(f2, text='Back', bg="black", fg="white", command=lambda: raise_frame(f1)).grid(row=3, column=4)
 Label(f2, text="", bg="black", fg="white").grid(row=10, column=10)
-
 
 ###########
 # FRAME 3 #
