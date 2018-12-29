@@ -40,7 +40,6 @@ plt.show()
 """)
 
     plot_file.close()
-    time.sleep(5)
     exec(open("./plot.py").read())
 
 
@@ -48,7 +47,7 @@ def equation_finder(usr_src):
     """using the function point_finder, this function creates a list of tuples and sends it to dcode.fr api
        to find the final equation."""
     points = ""
-    for i in range(0, 5, 2):
+    for i in range(0, 10, 2):
         points += str(point_finder(usr_src, i))
 
     print("final points are: {}".format(points))
