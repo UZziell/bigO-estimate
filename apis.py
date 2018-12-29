@@ -14,7 +14,9 @@ class Compiler:
                         }
         self.response = requests.post(url=self.url, data=json.dumps(self.payload), headers=self.headers)
         self.pyresponse = self.response.json()
-        print("JDOODLE COMPILER STATUS CODE WAS: ", self.response.status_code)
+        if self.response.status_code != 200:
+            print(f"Problem in compiler API, StatusCode: {self.response.status_code}")
+            print(f"response: {self.pyresponse}")
 
 
 # print("Status code: ", response.status_code)
@@ -33,7 +35,8 @@ class DcodeFR:
 
         self.response = requests.post(url=self.url, data=self.payload, headers=self.headers)
         self.output = self.response.json()
-
-        print("DCODEFR API STATUS CODE WAS: ,end=' '", self.response.status_code)
+        if self.response.status_code != 200:
+            print(f"Problem in DCODE.FR API, StatusCode: {self.response.status_code}")
+            print(f"response: {self.pyresponse}")
         # print("\n")
         # print("test output: {}".format(self.output['results']))
