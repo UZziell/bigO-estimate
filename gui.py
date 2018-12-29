@@ -3,8 +3,8 @@ from tkinter import messagebox
 import functions as fn
 
 
-def raise_frame(frame):
-    frame.tkraise()
+def raise_frame(f):
+    f.tkraise()
 
 
 root = Tk()
