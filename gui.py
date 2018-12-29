@@ -1,3 +1,4 @@
+import time
 from tkinter import *
 from tkinter import messagebox
 import functions as fn
@@ -58,7 +59,12 @@ def calc_handle():
     complexity = fn.equation_finder(user_input)
     messagebox.showwarning("TADDDDDAAAAAAAAAAAAA",
                            f"Estimated Algorithm Complexity(BIG O notation): {complexity[0]}")
-    fn.plot(complexity[1])
+    if complexity[1] == '':
+        fn.plot(1)
+    elif 1 < int(complexity[1]) < 10:
+        fn.plot(complexity[1])
+    else:
+        print("Not able to plot, power > 9")
     # api1 = compiler_api.Api(single_input)
     # print(api1.response.status_code, api1.finalstring)
     # messagebox.showinfo("Operation Successful", "Estimated: {}".format(api1.finalstring["cpuTime"]))
