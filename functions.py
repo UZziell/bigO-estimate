@@ -1,5 +1,4 @@
 import apis
-import time
 import socket
 
 
@@ -27,11 +26,12 @@ def point_finder(source, N):
     tup = (N, len(output))
 
     # TEST not important, just to print log
-    print(f"""      N={N}
-                output: {output}
-                len(output) = {len(output)}
-                found point: {tup}
-    ##########################################""")
+    # print(f"""      N={N}
+    #             output: {output}
+    #             len(output) = {len(output)}
+    #             found point: {tup}
+    # ##########################################""")
+    print(f"""  found point: {tup}""")
     # TSET
     return tup
 
@@ -42,12 +42,13 @@ def plot(power, power2=0):
     plot_file.write(f"""\n
 import numpy as np
 import matplotlib.pyplot as plt
-t = np.arange(0., 1, 0.03)
+t = np.arange(0., 5, 0.001)
 plt.title('Algorithm Complexity')
 plt.ylabel('Output Length')
 plt.xlabel('N')
-plt.plot(t, t ** {power}, 'g-', label=f"n*{power}")
-plt.plot(t, t ** {power2} , 'r-', label=f"n*{power2}")
+plt.plot(t, t ** {power}, label=f"First: n^{power}")
+plt.plot(t, t ** {power2}, label=f"Second: n^{power2}")
+plt.legend()
 plt.show()
 """)
 
@@ -94,10 +95,11 @@ def equation_finder(usr_src):
 # import numpy as np
 # import matplotlib.pyplot as plt
 #
-# t = np.arange(0., 1, 0.03)
+# t = np.arange(0., 5, 0.001)
 # plt.title('Algorithm Complexity')
 # plt.ylabel('Output Length')
 # plt.xlabel('N')
-# plt.plot(t, t ** 1, 'g-')
-# plt.plot(t, t ** 2, 'r-')
+# plt.plot(t, t ** 2, label=f"First: n^3")
+# plt.plot(t, t ** 1, label=f"Second: n^2")
+# plt.legend()
 # plt.show()
