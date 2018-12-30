@@ -73,7 +73,7 @@ def equation_finder(usr_src):
         if letter == 'x' and equation[i + 1] == "^":
             bigo += equation[i + 1:i + 3] + ")"
             power += equation[i + 2]
-            print(power)
+            # print(power)
             break
     else:
         bigo += ")"
