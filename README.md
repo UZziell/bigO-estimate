@@ -14,7 +14,7 @@ You also need to install the package ''request'' if not installed already and im
 
 #### On Linux
 
-##### Install requests from terminal using pip :
+##### Install requests from terminal using pip:
 
 ```
 pip install requests
