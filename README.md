@@ -12,8 +12,10 @@ You can install python using [Properly Installing Python](https://docs.python-gu
 
 You also need to install the package ''request'' if not installed already and import it in your python IDE.
 
-####On Linux
-######Install requests from terminal using pip :
+On Linux
+
+Install requests from terminal using pip :
+
 ```
 pip install requests
 ```
