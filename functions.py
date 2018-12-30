@@ -1,5 +1,17 @@
 import apis
 import time
+import socket
+
+
+def is_connected():
+    try:
+        # connect to the host -- tells us if the host is actually
+        # reachable
+        socket.create_connection(("www.google.com", 80))
+        return True
+    except OSError:
+        pass
+    return False
 
 
 def compiler(source):
@@ -15,11 +27,11 @@ def point_finder(source, N):
     tup = (N, len(output))
 
     # TEST not important, just to print log
-    print(f"""N={N}
+    print(f"""      N={N}
                 output: {output}
                 len(output) = {len(output)}
                 found point: {tup}
-    ==============================================================""")
+    ##########################################""")
     # TSET
     return tup
 
@@ -35,7 +47,7 @@ plt.title('Algorithm Complexity')
 plt.ylabel('Output Length')
 plt.xlabel('N')
 plt.plot(t, t ** {power}, 'g-', label=f"n*{power}")
-plt.plot(t, t ** {power2} -1 , 'r-', label=f"n*{power2}")
+plt.plot(t, t ** {power2} , 'r-', label=f"n*{power2}")
 plt.show()
 """)
 
@@ -47,7 +59,7 @@ def equation_finder(usr_src):
     """using the function point_finder, this function creates a list of tuples and sends it to dcode.fr api
        to find the final equation."""
     points = ""
-    for i in range(0, 10, 2):
+    for i in range(0, 21, 5):
         points += str(point_finder(usr_src, i))
 
     print("final points are: {}".format(points))
@@ -78,3 +90,14 @@ def equation_finder(usr_src):
 # while i < N:
 #     print("*", end='')
 #     i *= 2""")
+
+# import numpy as np
+# import matplotlib.pyplot as plt
+#
+# t = np.arange(0., 1, 0.03)
+# plt.title('Algorithm Complexity')
+# plt.ylabel('Output Length')
+# plt.xlabel('N')
+# plt.plot(t, t ** 1, 'g-')
+# plt.plot(t, t ** 2, 'r-')
+# plt.show()
