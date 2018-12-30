@@ -57,8 +57,11 @@ while i < N:
 def calc_handle():
     user_input = f2entry.get("1.0", "end-1c")
     complexity = fn.equation_finder(user_input)
-    messagebox.showwarning("TADDDDDAAAAAAAAAAAAA",
-                           f"Estimated Algorithm Complexity(BIG O notation): {complexity[0]}")
+    messagebox.showinfo("TADDDDDAAAAAAAAAAAAA",
+                        f"(BIG O notation): {complexity[0]}\n"
+                        f"click OK to sketch the graph")
+    root.destroy()
+    time.sleep(1)
     if complexity[1] == '':
         fn.plot(1)
     elif 1 < int(complexity[1]) < 10:
@@ -106,13 +109,23 @@ def compare_handle():
     left_complex = fn.equation_finder(src1)
     right_complex = fn.equation_finder(src2)
 
-    if left_complex > right_complex:
+    if left_complex[1] == '':
+        left_complex[1] = "1 + 1"
+    if right_complex[1] == '':
+        right_complex[1] = '1 + 1'
+
+    if left_complex[0] > right_complex[0]:
         better = "Second"
-    elif left_complex < right_complex:
+        messagebox.showinfo("Well WEll WELL...", "It seems {} algorithm is better.".format(better))
+    elif left_complex[0] < right_complex[0]:
         better = "First"
+        messagebox.showinfo("Well WEll WELL...", "It seems {} algorithm is better.".format(better))
     else:
-        better = "No idea which"
-    messagebox.showinfo("Compare Successful", "{} algorithm is better.".format(better))
+        messagebox.showinfo("Well WEll WELL...", "It seems order of both algorithms are equal.")
+
+    root.destroy()
+    time.sleep(1)
+    fn.plot(left_complex[1], right_complex[1])
     # api1 = apis.Compiler(f3entry.get("1.0", "end-1c"))
     # api2 = apis.Compiler(f3entry2.get("1.0", "end-1c"))
     # fcpu = float(api1.finalstring['cpuTime'])
@@ -145,5 +158,8 @@ compare_btn.grid(row=3, columnspan=4)
 
 Button(f3, text='back', bg="black", fg="white", command=lambda: raise_frame(f1)).place(x=970, y=690)
 
-raise_frame(f1)
-root.mainloop()
+if fn.is_connected():
+    raise_frame(f1)
+    root.mainloop()
+else:
+    messagebox.showerror("No Internet Connection", "Please check your internet connection and try again.")
