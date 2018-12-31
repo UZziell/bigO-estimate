@@ -14,12 +14,16 @@ You also need to install the package ''request'' if not installed already and im
 
 #### On Linux
 
-##### Install requests from terminal using pip:
+ Install requests from terminal using pip:
 
 ```
 pip install requests
 ```
-
+#### On Windows
+Make sure python is in your environment variables and run this on command prompt:
+```
+python -m pip install requests
+```
 ## Running
 
 After downloading run gui.py with desired IDE and everything should work fine.
