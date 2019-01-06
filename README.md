@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 You can install python using [Properly Installing Python](https://docs.python-guide.org/starting/installation/) guide.
 
-You also need to install the package ''request'' if not installed already and import it in your python IDE.
+You also need to install the package ''requests'' if not installed already and import it in your python IDE.
 
 #### On Linux
 
