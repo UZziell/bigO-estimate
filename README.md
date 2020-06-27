@@ -26,4 +26,7 @@ python -m pip install requests
 ```
 ## Running
 
-After downloading run gui.py with desired IDE and everything should work fine.
+After downloading run gui.py with python3.X 
+```
+python gui.py
+```
